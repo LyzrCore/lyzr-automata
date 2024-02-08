@@ -13,7 +13,7 @@ Lyzr Automata is a sophisticated multi-agent automation framework designed to ke
 ### How to Install
 Get started with Lyzr Automata by installing the package using pip:
 ```bash 
-pip install lyzr-automata=0.1.0 
+pip install lyzr-automata=0.1.1 
 ```
 ### Linkedin post automation example
 
