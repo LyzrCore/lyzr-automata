@@ -35,14 +35,14 @@ from lyzr_automata.tools.prebuilt_tools import linkedin_image_text_post_tool
 perplexity_model_text = PerplexityModel(
     api_key="YOUR_API_KEY",
     parameters={
-        "model": "mistral-7b-instruct",
+        "model": "pplx-70b-online",
     },
 )
 open_ai_model_text = OpenAIModel(
     api_key="YOUR_API_KEY",
     parameters={
         "model": "gpt-4-turbo-preview",
-        "temperature": 1,
+        "temperature": 0.2,
         "max_tokens": 1500,
     },
 )
@@ -57,16 +57,12 @@ open_ai_model_image = OpenAIModel(
 # Create custom role and persona based agents using Agent class
 
 content_researcher_agent = Agent(
-    prompt_persona="you were a born genius when it comes to researching content",
-    role="content researcher",
+    prompt_persona="You are an AI journalist good at using the provided data and write an engaging article",
+    role="AI Journalist",
 )
 linkedin_content_writer_agent = Agent(
-    prompt_persona="you are a smart person who understands how to write good tweets for linkedin maximizing content and keeping it meaningful",
-    role="Linkedin content creator",
-)
-utils_agent = Agent(
-    prompt_persona="you are text util function who is very efficient at doing tasks efficiently",
-    role="text util agent",
+    prompt_persona="You write engaging linkedin posts with the provided input data",
+    role="Linkedin Content Creator",
 )
 
 # Use prebuilt linkedin post tool
@@ -80,30 +76,30 @@ linkedin_post_tool = linkedin_image_text_post_tool(
 # Create tasks for your pipeline using Task class
 
 search_task = Task(
-    name="news search",
+    name="Search Latest AI News",
     output_type=OutputType.TEXT,
     input_type=InputType.TEXT,
     model=perplexity_model_text,
-    instructions="research today's news",
+    instructions="Search and collect all latest news about the startup Perplexity",
     log_output=True,
 )
 
 research_task = Task(
-    name="news search",
+    name="Draft Content Creator",
     agent=content_researcher_agent,
     output_type=OutputType.TEXT,
     input_type=InputType.TEXT,
     model=open_ai_model_text,
-    instructions="Do research and pull out from the input provided",
+    instructions="Analyze the input and clean the data and write a summary of 1000 words which can be used to create Linkedin post in the next task",
     enhance_prompt=False,
 )
 linkedin_content_writing_task = Task(
-    name="linkedin content writing",
+    name="Linkedin Post Creator",
     agent=linkedin_content_writer_agent,
     output_type=OutputType.TEXT,
     input_type=InputType.TEXT,
     model=open_ai_model_text,
-    instructions="Use the research material provided and write 1 engaging linkedin post of 200 chars. ",
+    instructions="Use the news summary provided and write 1 engaging linkedin post of 200 words",
     log_output=True,
     enhance_prompt=False,
 
@@ -115,19 +111,19 @@ image_creation_task = Task(
     input_type=InputType.TEXT,
     model=open_ai_model_image,
     log_output=True,
-    instructions="Use the research material provided and create a linkedin post image.",
+    instructions="Use the research material provided and create a linkedin post image that would be suitable for posting",
 )
 linkedin_upload_task = Task(
     name="upload post to linkedin",
     model=open_ai_model_text,
     tool=linkedin_post_tool,
-    instructions="upload this post",
+    instructions="Post on Linkedin",
     input_tasks=[linkedin_content_writing_task, image_creation_task],
 )
 
 # Currently we support only sync linear pipeline
 # Use LinearSyncPipeline class to run linear pipelines
-# Async DAG workflow is in our feature pipeline for next versions
+# Async DAG workflow & Human-in-Loop review are on our feature pipeline for the next versions
 
 def main():
     LinearSyncPipeline(
@@ -147,6 +143,8 @@ def main():
 main()
 ```
 Colab Notebook: https://colab.research.google.com/drive/1lVJrdjHVZjbwZSqwJEU_etHC4GM3ihD0?usp=sharing
+
+[![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/dXmgggHYUz)
 
 ## Contact
 For queries, reach us at contact@lyzr.ai
