@@ -42,7 +42,7 @@ class PerplexityModel(AIModel):
     def generate_text(
         self,
         task_id: str = None,
-        system_persona: str = "Be precise and concise.",
+        system_persona: str = "You are a search engine. Execute the search for the phrase provided by the user. provide only the search results of the output. Do not share the steps or the methods that we used to generate the results",
         prompt: str = None,
         messages: List[Dict] = None,
     ):
