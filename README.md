@@ -9,6 +9,7 @@ Note : Framework was developed swiftly as an experiment, leading to initial impe
 ### Lyzr Automata - Autonomous Multi-Agent Framework for Process Automation
 Lyzr Automata is a sophisticated multi-agent automation framework designed to keep things simple, with a focus on workflow efficiency and effectiveness. It enables the creation of multiple agents that are coupled with specific tasks. The agents and tasks can run independently and complete the provided instructions, thus entering a stable state.
 
+![Lyzr Automata](https://github.com/LyzrCore/lyzr-automata/assets/136654928/a9f0ecf7-0722-4038-8e3a-f00ce43c882e)
 
 ### How to Install
 Get started with Lyzr Automata by installing the package using pip:
