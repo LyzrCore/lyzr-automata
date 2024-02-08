@@ -1,8 +1,8 @@
 ![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/dXmgggHYUz)
 
 
-## Lyzr Automata 
-##### A low-code multi-agent automation framework.
+# Lyzr Automata 0.1.1
+### A low-code multi-agent automation framework.
 
 Note : Framework was developed swiftly as an experiment, leading to initial imperfections. We're committed to enhancing its stability and structure in upcoming releases, ensuring a high-quality. We encourage contributions from everyone, aiming to advance the project further together.
 
