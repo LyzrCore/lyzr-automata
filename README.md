@@ -75,7 +75,7 @@ search_task = Task(
     output_type=OutputType.TEXT,
     input_type=InputType.TEXT,
     model=perplexity_model_text,
-    instructions="research news about today 2/07/2024",
+    instructions="research today's news",
     log_output=True,
 )
 
@@ -106,13 +106,13 @@ image_creation_task = Task(
     input_type=InputType.TEXT,
     model=open_ai_model_image,
     log_output=True,
-    instructions="Use the research material provided and create a linkedin post image",
+    instructions="Use the research material provided and create a linkedin post image.",
 )
 linkedin_upload_task = Task(
     name="upload post to linkedin",
     model=open_ai_model_text,
     tool=linkedin_post_tool,
-    instructions="upload this post note i want the description to be big",
+    instructions="upload this post",
     input_tasks=[linkedin_content_writing_task, image_creation_task],
 )
 
