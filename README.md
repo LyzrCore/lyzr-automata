@@ -1,4 +1,4 @@
-![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/VpQQTJ9d)
+![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/dXmgggHYUz)
 
 
 ## Lyzr Automata 
@@ -145,6 +145,7 @@ def main():
 
 main()
 ```
+Colab Notebook: https://colab.research.google.com/drive/1lVJrdjHVZjbwZSqwJEU_etHC4GM3ihD0?usp=sharing
 
 ## Contact
 For queries, reach us at contact@lyzr.ai
