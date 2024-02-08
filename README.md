@@ -27,6 +27,9 @@ from lyzr_automata.tasks.task_base import Task
 from lyzr_automata.tasks.util_tasks import summarize_task
 from lyzr_automata.tools.prebuilt_tools import linkedin_image_text_post_tool
 
+# create model instances as per your requirements
+# Use prebuilt models for perplexity and OpenAI directly as needed.
+# Extend the AIModel base class for custom model integration.
 
 perplexity_model_text = PerplexityModel(
     api_key="YOUR_API_KEY",
@@ -50,6 +53,8 @@ open_ai_model_image = OpenAIModel(
     },
 )
 
+# create custom role and persona based agents using Agent class
+
 content_researcher_agent = Agent(
     prompt_persona="you were a born genius when it comes to researching content",
     role="content researcher",
@@ -63,12 +68,15 @@ utils_agent = Agent(
     role="text util agent",
 )
 
+# use our prebuilt linkedin post tool
+# You can create your own custom tools with our base Tool class
 
 linkedin_post_tool = linkedin_image_text_post_tool(
     owner="",
     token=""
 )
 
+# create tasks for your pipeline using Task class
 
 search_task = Task(
     name="news search",
@@ -116,6 +124,7 @@ linkedin_upload_task = Task(
     input_tasks=[linkedin_content_writing_task, image_creation_task],
 )
 
+# Currently we support only sync linear pipeline, you can use our LinearSyncPipeline class to run linear pipelines
 
 def main():
     LinearSyncPipeline(
