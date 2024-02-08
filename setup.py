@@ -16,4 +16,9 @@ setup(
     long_description_content_type="check Readme file",
     url="https://github.com/lyzrcore/lyzr-automata",
     license="MIT",
+        classifiers=[
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires=">=3.8.1, <3.12",
 )
