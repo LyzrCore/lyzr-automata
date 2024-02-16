@@ -2,6 +2,7 @@ README.md
 setup.py
 lyzr_automata/__init__.py
 lyzr_automata/data_models.py
+lyzr_automata/logger.py
 lyzr_automata.egg-info/PKG-INFO
 lyzr_automata.egg-info/SOURCES.txt
 lyzr_automata.egg-info/dependency_links.txt
@@ -20,6 +21,7 @@ lyzr_automata/tasks/task_base.py
 lyzr_automata/tasks/task_literals.py
 lyzr_automata/tasks/util_tasks.py
 lyzr_automata/tools/__init__.py
+lyzr_automata/tools/email.py
 lyzr_automata/tools/linkedin.py
 lyzr_automata/tools/prebuilt_tools.py
 lyzr_automata/tools/tool_base.py

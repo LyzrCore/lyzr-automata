@@ -52,7 +52,7 @@ class Task:
         if self.input_tasks == None:
             self.input_tasks = []
         if self.agent.memory != None:
-            self.model = self.agent.memory.generate_memory_model(model)
+            self.model = self.memory.generate_memory_model(model)
         else:
             self.model = model
 

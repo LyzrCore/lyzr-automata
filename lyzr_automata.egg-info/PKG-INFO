@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: lyzr-automata
-Version: 0.1.0
+Version: 0.1.1
 Summary: low-code multi-agent automation framework
 Home-page: https://github.com/lyzrcore/lyzr-automata
 Author: lyzr
 License: MIT
-Description: ![version](https://img.shields.io/badge/version-0.1.0-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/VpQQTJ9d)
+Description: ![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/VpQQTJ9d)
         
         
         ## Lyzr Automata 
@@ -20,7 +20,7 @@ Description: ![version](https://img.shields.io/badge/version-0.1.0-blue.svg) [![
         ### How to Install
         Get started with Lyzr Automata by installing the package using pip:
         ```bash 
-        pip install lyzr-automata=0.1.0 
+        pip install lyzr-automata=0.1.1 
         ```
         ### Linkedin post automation example
         
@@ -157,4 +157,7 @@ Description: ![version](https://img.shields.io/badge/version-0.1.0-blue.svg) [![
         For queries, reach us at contact@lyzr.ai
         
 Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8.1, <3.12
 Description-Content-Type: check Readme file

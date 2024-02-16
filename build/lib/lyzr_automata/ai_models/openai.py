@@ -10,7 +10,6 @@ class OpenAIModel(AIModel):
     def __init__(self, api_key, parameters: Dict[str, Any]):
         self.parameters = parameters
         self.client = OpenAI(api_key=api_key)
-        self.api_key = api_key
 
     def generate_text(
         self,
