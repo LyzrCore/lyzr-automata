@@ -1,4 +1,5 @@
-![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/dXmgggHYUz)
+![version](https://img.shields.io/badge/version-0.1.1-blue.svg) [![Discord](https://img.shields.io/badge/Discord-join%20now-blue.svg?style=flat&logo=Discord)](https://discord.gg/dXmgggHYUz) [![YouTube Video](https://img.shields.io/badge/YouTube-Video-red?logo=youtube)](https://youtu.be/6U42TgaR6RA?feature=shared)
+
 
 ![Lyzr Automata Banner](https://github.com/LyzrCore/lyzr-automata/assets/136654928/2f05f718-5526-4178-a312-90059b945e23)
 
@@ -152,4 +153,3 @@ For queries, reach us at contact@lyzr.ai
 
 ## Demo
 
-https://youtu.be/6U42TgaR6RA?feature=shared
