@@ -3,6 +3,7 @@
 __pycache__
 dist/
 resources/
+build/
 .env
 assets/*
 .idea
