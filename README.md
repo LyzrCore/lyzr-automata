@@ -149,3 +149,7 @@ Colab Notebook: https://colab.research.google.com/drive/1lVJrdjHVZjbwZSqwJEU_etH
 
 ## Contact
 For queries, reach us at contact@lyzr.ai
+
+## Demo
+
+https://youtu.be/6U42TgaR6RA?feature=shared
