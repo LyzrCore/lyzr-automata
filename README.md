@@ -153,5 +153,5 @@ For queries, reach us at contact@lyzr.ai
 
 ## Demo
 
-[![Alt text](https://github.com/LyzrCore/lyzr-automata/assets/136654928/5cd11388-dd44-41b3-a447-228d07e9f523)](https://youtu.be/6U42TgaR6RA?feature=shared){:target="_blank"}
+[![Alt text](https://github.com/LyzrCore/lyzr-automata/assets/136654928/5cd11388-dd44-41b3-a447-228d07e9f523)](https://youtu.be/6U42TgaR6RA?feature=shared)
 
