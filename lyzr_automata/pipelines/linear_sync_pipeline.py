@@ -1,5 +1,6 @@
 import time
 from typing import List
+from lyzr_automata.logger import Logger
 
 from lyzr_automata.tasks.task_base import Task
 from lyzr_automata.utils.resource_handler import ResourceBox
@@ -12,10 +13,12 @@ class LinearSyncPipeline:
         completion_message: str = "",
         name: str = "",
         resource_box: ResourceBox = ResourceBox(base_folder="resources"),
+        logger:Logger = None
     ):
         self.tasks = tasks
         self.completion_message = completion_message
         self.name = name
+        self.logger = logger
         for task in self.tasks:
             task.set_resource_box(resource_box=resource_box)
 
@@ -24,6 +27,7 @@ class LinearSyncPipeline:
         tasks_output = []
         tasks_map = {}
         for task in self.tasks:
+            task.logger = self.logger
             if task.input_tasks is None or len(task.input_tasks) == 0:
                 task.previous_output = str(previous_output)
             else:
@@ -31,7 +35,7 @@ class LinearSyncPipeline:
                 for dependency_task in task.input_tasks:
                     if dependency_task.instructions in tasks_map.keys():
                         dependency_task_output = (
-                            tasks_map[dependency_task.instructions]
+                            f" Input: {tasks_map[dependency_task.instructions]}"
                             + dependency_task_output
                         )
                 task.previous_output = dependency_task_output
@@ -47,13 +51,13 @@ class LinearSyncPipeline:
         # TODO create a better logger
         execution_stat_time = time.time()
         print(
-            f" ------- START PIPELINE {self.name} :: start time : {str(execution_stat_time)} ------- "
+            f"START PIPELINE {self.name} :: start time : {str(execution_stat_time)}"
         )
         self.output = self._execute()
         execution_end_time = time.time()
         execution_time = execution_end_time - execution_stat_time
         print(
-            f" ------- END PIPELINE {self.name} :: end time :  {str(execution_end_time)} :: execution time : {execution_time} ------- "
+            f"END PIPELINE {self.name} :: end time :  {str(execution_end_time)} :: execution time : {execution_time}"
         )
         print(self.completion_message)
         return self.output
