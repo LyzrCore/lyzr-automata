@@ -8,6 +8,13 @@ from lyzr_automata.tools.linkedin import (
     LinkedInPostOutput,
     post_image_and_text,
 )
+
+from lyzr_automata.tools.devto import (
+    DevToArticleInput,
+    DevToArticleOutput,
+    create_devto_article
+)
+
 from lyzr_automata.tools.tool_base import Tool
 
 
@@ -37,5 +44,18 @@ def send_email_by_smtp_tool(username: str, password: str, host: str, port: int ,
             "host": host,
             "port": port,
             "sender_email":sender_email
+        },
+    )
+
+def devto_article_post(api_key:str,published:bool):
+    return Tool(
+        name="dev.to article poster",
+        desc="posts dev.to article",
+        function=create_devto_article,
+        function_input=DevToArticleInput,
+        function_output=DevToArticleOutput,
+        default_params={
+            "api_key": api_key,
+            "published": published,
         },
     )

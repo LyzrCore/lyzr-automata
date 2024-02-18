@@ -1,0 +1,83 @@
+import os
+from lyzr_automata.agents.agent_base import Agent
+from lyzr_automata.pipelines.linear_sync_pipeline import LinearSyncPipeline
+from lyzr_automata.tasks.task_base import Task
+from lyzr_automata.ai_models.openai import OpenAIModel
+from lyzr_automata.ai_models.perplexity import PerplexityModel
+from lyzr_automata.memory.llama_index import LlamaMemory
+from lyzr_automata.tools.prebuilt_tools import devto_article_post
+from lyzr_automata import Logger
+from llama_index import download_loader
+from llama_index.readers.schema import Document
+from llama_index import VectorStoreIndex
+
+def transform_dataset_item(item):
+    return Document(
+        text=item.get("text"),
+        extra_info={"url": item.get("url")},
+    )
+
+def generate_and_post_blog(website_url, openai_api_key, devto_api_key, actor_id="apify/website-content-crawler"):
+    os.environ["OPENAI_API_KEY"] = openai_api_key
+    
+    ApifyActor = download_loader("ApifyActor")
+    reader = ApifyActor("")
+    documents = reader.load_data(
+        actor_id=actor_id,
+        run_input={"startUrls": [{"url": website_url}]},
+        dataset_mapping_function=transform_dataset_item,
+    )
+
+    devto_article_post_tool = devto_article_post(api_key=devto_api_key, published=True)
+    index = VectorStoreIndex.from_documents(documents=documents)
+    website_memory = LlamaMemory(llama_index=index)
+
+    open_ai_model_text = OpenAIModel(
+        api_key=openai_api_key,
+        parameters={
+            "model": "gpt-4-turbo-preview",
+            "temperature": 1,
+            "max_tokens": 1500,
+        },
+    )
+
+    website_agent = Agent(role="scraper", memory=website_memory)
+    content_agent = Agent(prompt_persona="As a creative technical markdown blogger, you understand how to craft engaging and informative blogs about websites.", role="Technical Blogger")
+
+    scrape_task = Task(
+        name="Scrape Website",
+        model=open_ai_model_text,
+        instructions="Generate 10 insightful points about the website content.",
+        agent=website_agent,
+        log_output=True
+    )
+
+    blog_writing_task = Task(
+        name="Compose Blog",
+        model=open_ai_model_text,
+        instructions="Write a 300-word blog using markdown, including titles and hashtags. Emphasize clarity and engagement.",
+        log_output=True,
+        agent=content_agent
+    )
+
+    devto_post_task = Task(
+        name="Post to Dev.to",
+        model=open_ai_model_text,
+        tool=devto_article_post_tool,
+        log_output=True
+    )
+
+    def main():
+        logger = Logger()
+        LinearSyncPipeline(
+            logger=logger,
+            name="Blog Creation and Posting",
+            completion_message="Blog successfully posted 🎉",
+            tasks=[
+                scrape_task,
+                blog_writing_task,
+                devto_post_task,
+            ],
+        ).run()
+
+    main()

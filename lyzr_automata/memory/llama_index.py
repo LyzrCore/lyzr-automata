@@ -23,7 +23,7 @@ class LlamaMemoryModel(AIModel):
         prompt: str = None,
         messages: List[dict] = None,
     ):
-        response = self.query_engine.query(f"{system_persona} {prompt}")
+        response = self.query_engine.query(f"{prompt}")
         return response
     
     def generate_image(
