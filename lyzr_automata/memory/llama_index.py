@@ -1,5 +1,4 @@
 from typing import Any, Dict, List
-from fastapi.responses import FileResponse
 from lyzr_automata.ai_models.model_base import AIModel
 from lyzr_automata.memory.memory_literals import MemoryProvider
 from lyzr_automata.utils.resource_handler import ResourceBox
