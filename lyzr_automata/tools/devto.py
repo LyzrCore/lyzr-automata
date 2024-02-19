@@ -2,10 +2,34 @@ from ast import List
 from pydantic import BaseModel
 import requests
 import json
+import re
 
+import re
+
+def sanitize_to_strict_alphanumeric(input_value, ascii_only=True):
+    """
+    Converts any input to a strictly alphanumeric string, removing spaces and enforcing ASCII-only characters if desired.
+
+    :param input_value: The input to be sanitized.
+    :param ascii_only: Whether to enforce ASCII-only characters.
+    :return: A sanitized string with only alphanumeric characters.
+    """
+    # Convert the input to a string first
+    str_value = str(input_value)
+    
+    # If enforcing ASCII-only characters, encode and decode to remove non-ASCII characters
+    if ascii_only:
+        str_value = str_value.encode('ascii', 'ignore').decode('ascii')
+    
+    # Use regular expressions to keep only alphanumeric characters
+    sanitized_str = re.sub(r'[^a-zA-Z0-9]', '', str_value)
+    
+    return sanitized_str
+    
 def create_devto_article(api_key, title, published, markdown_body_content, tags, series):
     if series == None:
         series = title
+    tags = [sanitize_to_strict_alphanumeric(tag) for tag in tags]
     """
     Create an article on dev.to.
 
