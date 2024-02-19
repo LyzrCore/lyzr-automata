@@ -182,7 +182,9 @@ linkedin_content_writing_task = Task(
 Pipelines help us run the tasks in a directed orderly fashion. Currently we support linear async pipeline, with plans to release async DAG pipelines in next versions.
 
 Let us look at a simple sync flow to create a pipeline for automated Linkedin post.
+
 *5.1 **Flow***
+
 ```mermaid
 graph LR
 A((T1. Write Content))  --> B((T2. Publish Content))
