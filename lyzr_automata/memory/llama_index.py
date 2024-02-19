@@ -1,13 +1,10 @@
 from typing import Any, Dict, List
 from fastapi.responses import FileResponse
-
-import openai
 from lyzr_automata.ai_models.model_base import AIModel
 from lyzr_automata.memory.memory_literals import MemoryProvider
-import os
-
 from lyzr_automata.utils.resource_handler import ResourceBox
-
+from lyzr_automata.data_models import FileResponse
+import os
 
 class LlamaMemoryModel(AIModel):
     def __init__(self, api_key, parameters: Dict[str, Any]):
