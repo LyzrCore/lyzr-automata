@@ -42,28 +42,29 @@ Note: You can use our prebuilt model classes for **OpenAI and Perplexity** or ex
 
 1.1 *Let's look at an example to create a **OpenAI Model** with parameters*
 ```python
-from  lyzr_automata.ai_models.openai  import  OpenAIModel
+from lyzr_automata.ai_models.openai import OpenAIModel
 
-open_ai_text_completion_model =  OpenAIModel(
-			    api_key="YOUR_OPEN_AI_KEY",
-			    parameters={
-						    "model": "gpt-4-turbo-preview",
-						    "temperature": 0.2,
-						    "max_tokens": 1500,
-						    },
-	)
-```
+open_ai_text_completion_model = OpenAIModel(
+    api_key="YOUR_OPEN_AI_KEY",
+    parameters={
+        "model": "gpt-4-turbo-preview",
+        "temperature": 0.2,
+        "max_tokens": 1500,
+    },
+)
+``` 
 					
 1.2 *Let's look at an example to create a **Perplexity Model** with parameters*
 ```python
-from  lyzr_automata.ai_models.perplexity  import  PerplexityModel
+from lyzr_automata.ai_models.perplexity import PerplexityModel
 
-perplexity_model_text  =  PerplexityModel(
-										  api_key="YOUR_KEY_HERE",
-										  parameters={
-												  "model": "pplx-70b-online",
-										},
-								)
+perplexity_model_text = PerplexityModel(
+    api_key="YOUR_KEY_HERE",
+    parameters={
+        "model": "pplx-70b-online",
+    },
+)
+
 ```
 	
 
@@ -90,12 +91,13 @@ Tools are used by Agents to complete tasks. In general sense tools help agents t
 
 *3.1 Let's look at an example to use prebuilt linkedin post tool*
 ```python
-from  lyzr_automata.tools.prebuilt_tools  import  linkedin_image_text_post_tool
-    	  
-linkedin_post_tool  =  linkedin_image_text_post_tool(
-    								owner="urn:li:person:<YOUR_ID_HERE>",
-    								token="YOUR_TOKEN_HERE",
-    							)
+from lyzr_automata.tools.prebuilt_tools import linkedin_image_text_post_tool
+
+linkedin_post_tool = linkedin_image_text_post_tool(
+    owner="urn:li:person:<YOUR_ID_HERE>",
+    token="YOUR_TOKEN_HERE",
+)
+
 ```
 *3.2 Let's look at an example to use our tool class to create your own custom tool*
  ##### 3.2 Step 1. Create a function
