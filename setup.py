@@ -6,9 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "openai==1.3.4",
-        "requests==2.31.0",
-        "asyncio==3.4.3",
-        
+        "requests==2.31.0",        
     ],
     author="lyzr",
     description="low-code multi-agent automation framework",
