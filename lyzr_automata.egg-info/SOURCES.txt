@@ -14,6 +14,11 @@ lyzr_automata/ai_models/__init__.py
 lyzr_automata/ai_models/model_base.py
 lyzr_automata/ai_models/openai.py
 lyzr_automata/ai_models/perplexity.py
+lyzr_automata/examples/__init__.py
+lyzr_automata/examples/linkedin_post_automation.py
+lyzr_automata/memory/__init__.py
+lyzr_automata/memory/llama_index.py
+lyzr_automata/memory/memory_literals.py
 lyzr_automata/pipelines/__init__.py
 lyzr_automata/pipelines/linear_sync_pipeline.py
 lyzr_automata/tasks/__init__.py
@@ -21,8 +26,10 @@ lyzr_automata/tasks/task_base.py
 lyzr_automata/tasks/task_literals.py
 lyzr_automata/tasks/util_tasks.py
 lyzr_automata/tools/__init__.py
+lyzr_automata/tools/devto.py
 lyzr_automata/tools/email.py
 lyzr_automata/tools/linkedin.py
+lyzr_automata/tools/llama_tool.py
 lyzr_automata/tools/prebuilt_tools.py
 lyzr_automata/tools/tool_base.py
 lyzr_automata/utils/__init__.py
