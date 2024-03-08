@@ -91,7 +91,7 @@ send_email_task = Task(
     instructions="Send Email",
     model=open_ai_model_text,
     input_tasks = [merge_image_text_task],
-    default_input = ['rasswanthshankar@gmail.com']
+    default_input = [EMAIL1, EMAIL2]
 )
 
 from lyzr_automata.pipelines.linear_sync_pipeline import LinearSyncPipeline
