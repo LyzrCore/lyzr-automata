@@ -9,8 +9,6 @@ import os
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-PP_AI_KEY = os.getenv("PP_AI_KEY")
-USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 EMAIL = os.getenv("EMAIL")
 
