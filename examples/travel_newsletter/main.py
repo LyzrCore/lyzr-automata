@@ -45,7 +45,7 @@ content_researcher_agent = Agent(
 )
 
 # Draft a newsletter Task
-research_task = Task(
+newsletter_content_creation_task = Task(
     name="Draft Content Creator",
     agent=content_researcher_agent,
     output_type=OutputType.TEXT,
@@ -72,7 +72,7 @@ merge_image_text_task = Task(
     model=open_ai_model_text,
     log_output=True,
     instructions="Include the image in the html code provided. Return only the HTML and CSS code",
-    input_tasks = [research_task, image_creation_task]
+    input_tasks = [newsletter_content_creation_task, image_creation_task]
 )
 
 # Use the prebuilt send email Tool
@@ -105,7 +105,7 @@ def main_program():
         name="Send Email",
         completion_message="Email Sent!",
         tasks=[
-            research_task,
+            newsletter_content_creation_task,
             image_creation_task,
             merge_image_text_task,
             send_email_task
