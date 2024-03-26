@@ -17,6 +17,6 @@ A storyboard generator and screenplay writer using Lyzr-Automata. Using a small 
 
 ## Links
 
-**Medium** - 
+**Medium** - https://medium.com/@rasswanthshankar/boost-your-filmmaking-workflow-create-storyboards-and-write-scenes-using-lyzr-automata-aa9c18394b4c
 
-**Video Walkthrough** - 
+**Video Walkthrough** - https://tella.video/storyboard-generator-8fpi
