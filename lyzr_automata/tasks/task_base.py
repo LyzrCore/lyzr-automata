@@ -2,6 +2,7 @@ from __future__ import annotations
 import time
 from typing import Any, List, Union
 import uuid
+import re
 from lyzr_automata.agents.agent_base import Agent
 from lyzr_automata.ai_models.model_base import AIModel
 from lyzr_automata.logger import Logger
@@ -29,6 +30,7 @@ class Task:
         input_tasks: List[Task] = None,
         enhance_prompt: bool = False,
         logger: Logger = None,
+        chunk_size: int = 4096,
     ):
         self.input_type = input_type
         self.instructions = instructions
@@ -45,6 +47,7 @@ class Task:
         self.task_id = uuid.uuid4()
         self.name = name
         self.logger = logger
+        self.chunk_size = chunk_size
         if self.tool != None:
             self.output_type = OutputType.TOOL
         if self.name == None:
@@ -80,11 +83,20 @@ class Task:
     def _generate_text(self, system_persona: str, prompt: str):
         if self.enhance_prompt:
             prompt = enhance_prompt(prompt=prompt, model=self.model)
-        return self.model.generate_text(
-            task_id=self.task_id,
-            system_persona=system_persona,
-            prompt=f"{prompt}  Input: {self.previous_output} {self.default_input}",
-        )
+
+        text_model_input = self.concatenate_strings(self.previous_output, self.default_input)
+        text_model_input_list = self.chunk_by_sentences(text_model_input, self.chunk_size)
+
+        generated_list = []
+        for input_text in text_model_input_list:
+            generated_output = self.model.generate_text(
+                task_id=self.task_id,
+                system_persona=system_persona,
+                prompt=f"{prompt}  Input: {input_text}",
+            )
+            generated_list.append(generated_output)
+
+        return generated_list
 
     def _generate_image(self, prompt: str):
         return self.model.generate_image(
@@ -126,3 +138,23 @@ class Task:
         else:
             self.output = self._execute_task()
         return self.output
+    
+    def chunk_by_sentences(self, text, chunk_size):
+        chunks = []
+        current_chunk = ""
+        for sentence in re.split(r'[.?!]+', text):
+            if len(current_chunk + sentence) <= chunk_size:
+                current_chunk += " " + sentence
+            else:
+                chunks.append(current_chunk.strip())
+                current_chunk = sentence
+        if current_chunk:
+            chunks.append(current_chunk.strip())
+        return chunks
+    
+    def concatenate_strings(self, str1, str2):
+        if str1 is None:
+            str1 = ''
+        if str2 is None:
+            str2 = ''
+        return str1 + str2
