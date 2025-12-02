@@ -45,7 +45,7 @@ class ClaudeModel(AIModel):
         }
 
         if system_persona:
-            data_payload["system"] = {"persona": system_persona}
+            data_payload["system"] = system_persona
 
         try:
             response = self.client.invoke_model(
