@@ -6,7 +6,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         "openai==1.30.5",
-        "requests==2.31.0",        
+        "requests==2.31.0", 
+        "python-dotenv==1.0.1"
     ],
     author="lyzr",
     description="low-code multi-agent automation framework",
