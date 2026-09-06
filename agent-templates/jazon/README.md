@@ -32,6 +32,34 @@
 6. **Expandable** - Take the Jazon AI SDR template and expand it to a larger use case. Add voice calling, social media messaging and more features to the meta-agent.
 7. **Integrations** - Jazon AI SDR integrates with all LLMs (OpenAI GPT4, Claude3, Google Gemini, Llama3, Mistral), all leading vector databases, and runs on any cloud natively as Jazon AI runs as a container.
 
+## Running Jazon
+
+Jazon reads its configuration from environment variables, so copy the sample file and
+fill it in before starting the server:
+
+```bash
+cp .env.example .env
+```
+
+### With Docker
+
+```bash
+docker build -t jazon .
+docker run --rm -p 8005:8005 --env-file .env jazon
+```
+
+The container runs as the unprivileged `jazon` user, not as root.
+
+### Without Docker
+
+```bash
+pip install -r requirements.txt
+uvicorn app.server:app --host 0.0.0.0 --port 8005
+```
+
+The API is then available on http://localhost:8005.
+
+
 ### Book Demo
 
 #### Interested in deploying Jazon AI SDR or a similar meta-agent for your organization? Speak to us.
